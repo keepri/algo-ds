@@ -13,6 +13,8 @@ Cargo.lock
 
 # MSVC Windows builds of rustc generate these, which store debugging information
 *.pdb
-=======
-/target
->>>>>>> 41a591d (sorting & searching algorithms)
+
+list/
+queue/
+stack/
+recursion/
