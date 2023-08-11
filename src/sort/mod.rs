@@ -2,30 +2,20 @@ use std::time::Instant;
 
 use crate::{sort, utils};
 
-pub struct SortConfig {
-    pub logger: bool,
-    pub direction: Option<Direction>,
-}
-
 #[derive(PartialEq)]
 pub enum Direction {
     Asc,
     Desc,
 }
 
-pub fn bubble_sort(arr: &mut Vec<isize>, config: Option<SortConfig>) -> () {
+pub fn bubble_sort(arr: &mut Vec<isize>, direction: Option<Direction>, logger: bool) -> () {
     let start_time = Instant::now();
-
     let mut bubble: isize;
-    let mut direction = Direction::Asc;
+    let direction = match direction {
+        Some(dir) => dir,
+        None => Direction::Asc,
+    };
     let is_asc = direction == Direction::Asc;
-    let mut logger: bool = false;
-    if let Some(config) = config {
-        logger = config.logger;
-        if let Some(cfg_dir) = config.direction {
-            direction = cfg_dir;
-        }
-    }
 
     for i in 0..arr.len() {
         for j in 0..arr.len() - 1 - i {
@@ -80,23 +70,23 @@ fn qs(arr: &mut Vec<isize>, lo: usize, hi: usize) -> () {
     qs(arr, pivot_idx + 1, hi);
 }
 
-pub fn quick_sort(arr: &mut Vec<isize>, config: Option<SortConfig>) -> () {
+pub fn quick_sort(arr: &mut Vec<isize>, logger: bool) -> () {
     let start_time = Instant::now();
     let len = arr.len();
+
     qs(arr, 0, len - 1);
 
     let end_time = Instant::now();
-    if let Some(config) = config {
-        if config.logger == true {
-            println!(
-                "qsort finished in {}s",
-                utils::parse_duration(end_time.duration_since(start_time))
-            );
-        }
+
+    if logger == true {
+        println!(
+            "qsort finished in {}s",
+            utils::parse_duration(end_time.duration_since(start_time))
+        );
     }
 }
 
-pub fn insertion_sort(arr: &mut Vec<isize>, config: Option<SortConfig>) -> () {
+pub fn insertion_sort(arr: &mut Vec<isize>, logger: bool) -> () {
     let start_time = Instant::now();
 
     for i in 1..arr.len() {
@@ -108,12 +98,11 @@ pub fn insertion_sort(arr: &mut Vec<isize>, config: Option<SortConfig>) -> () {
     }
 
     let end_time = Instant::now();
-    if let Some(config) = config {
-        if config.logger == true {
-            println!(
-                "isort finished in {}s",
-                utils::parse_duration(end_time.duration_since(start_time))
-            );
-        }
+
+    if logger == true {
+        println!(
+            "isort finished in {}s",
+            utils::parse_duration(end_time.duration_since(start_time))
+        );
     }
 }

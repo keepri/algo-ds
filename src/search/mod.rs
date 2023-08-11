@@ -2,15 +2,7 @@ use std::time::Instant;
 
 use crate::utils;
 
-pub struct SearchConfig {
-    pub logger: bool,
-}
-
-pub fn linear_search<'a>(
-    arr: &'a Vec<isize>,
-    search: isize,
-    config: Option<SearchConfig>,
-) -> Option<&'a isize> {
+pub fn linear_search<'a>(arr: &'a Vec<isize>, search: isize, logger: bool) -> Option<&'a isize> {
     let start_time = Instant::now();
     let mut found: Option<&'a isize> = None;
 
@@ -21,27 +13,21 @@ pub fn linear_search<'a>(
         }
     }
 
-    if let Some(config) = config {
-        if config.logger == true {
-            match found {
-                Some(value) => println!(
-                    "linear search found {} in {}s",
-                    value,
-                    utils::parse_duration(Instant::now().duration_since(start_time))
-                ),
-                None => println!("linear search did not find the value"),
-            }
+    if logger == true {
+        match found {
+            Some(value) => println!(
+                "linear search found {} in {}s",
+                value,
+                utils::parse_duration(Instant::now().duration_since(start_time))
+            ),
+            None => println!("linear search did not find the value"),
         }
     }
 
     return found;
 }
 
-pub fn binary_search<'a>(
-    arr: &'a Vec<isize>,
-    search: isize,
-    config: Option<SearchConfig>,
-) -> Option<&'a isize> {
+pub fn binary_search<'a>(arr: &'a Vec<isize>, search: isize, logger: bool) -> Option<&'a isize> {
     let start_time = Instant::now();
     let mut found: Option<&'a isize> = None;
     let mut lo = 0;
@@ -69,16 +55,14 @@ pub fn binary_search<'a>(
         found = Some(&arr[mid]);
     }
 
-    if let Some(config) = config {
-        if config.logger == true {
-            match found {
-                Some(value) => println!(
-                    "binary search found {} in {}s",
-                    value,
-                    utils::parse_duration(Instant::now().duration_since(start_time))
-                ),
-                None => println!("binary search did not find the value"),
-            }
+    if logger == true {
+        match found {
+            Some(value) => println!(
+                "binary search found {} in {}s",
+                value,
+                utils::parse_duration(Instant::now().duration_since(start_time))
+            ),
+            None => println!("binary search did not find the value"),
         }
     }
 
@@ -90,7 +74,7 @@ pub fn binary_search<'a>(
     return found;
 }
 
-pub fn two_crystal_balls(breaks: &Vec<bool>, config: Option<SearchConfig>) -> Option<usize> {
+pub fn two_crystal_balls(breaks: &Vec<bool>, logger: bool) -> Option<usize> {
     let jump_amount = (breaks.len() as f64).sqrt().floor() as usize;
     let mut found: Option<usize> = None;
 
@@ -111,16 +95,14 @@ pub fn two_crystal_balls(breaks: &Vec<bool>, config: Option<SearchConfig>) -> Op
         }
     }
 
-    if let Some(config) = config {
-        if config.logger == true {
-            println!(
-                "two crystal balls: {}",
-                match found {
-                    Some(index) => format!("breaking point at index {index}"),
-                    None => format!("no breaking point found"),
-                }
-            );
-        }
+    if logger == true {
+        println!(
+            "two crystal balls: {}",
+            match found {
+                Some(index) => format!("breaking point at index {index}"),
+                None => format!("no breaking point found"),
+            }
+        );
     }
 
     return found;

@@ -16,4 +16,3 @@ Cargo.lock
 src/list/
 src/queue/
 src/stack/
-src/recursion/
