@@ -1,16 +1,20 @@
 # Algorithms and Data Structures
+`cargo run <usize> <bool>` arguments
+- `usize` - custom sized Vec used for sort/search, default is 25000
+- `bool` - disable logging, default is `true`
 
-## Sorting
+## Algorithms
+### Sorting
 - bubble sort
 - quick sort
 - insertion sort
 
-## Searching
+### Searching
 - linear search
 - binary search
 - two crystal balls to find breaking point index
 
-## Recursion
+### Recursion
 - maze walker
 
 | # | # | # | # | S | # | # | # | # | # |
@@ -29,7 +33,9 @@
 - i - visited
 - • - path
 
-### Optional
-`cargo run <usize> <bool>` arguments
-- `usize` - custom sized Vec used for sort/search, default is 25000
-- `bool` - disable logging, default is `true`
+## Data Structures
+### Queue
+- enqueue
+- dequeue
+- peek
+- len

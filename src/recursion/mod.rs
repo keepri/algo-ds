@@ -1,4 +1,6 @@
-use std::cmp::Ordering;
+use std::{cmp::Ordering, time::Instant};
+
+use crate::utils;
 
 #[derive(Clone, Copy)]
 struct Point {
@@ -88,7 +90,9 @@ pub fn solve_maze_recursively(logger: bool) {
         "#        #",
         "#E########",
     ];
+    let start_time = Instant::now();
     let (path, seen) = solve(&maze, "#", Point { x: 0, y: 4 }, Point { x: 6, y: 1 });
+    let duration = Instant::now().duration_since(start_time);
     let mut solution: Vec<String> = maze.iter().map(|row| row.to_string()).collect();
 
     for i in 0..seen.len() {
@@ -110,6 +114,11 @@ pub fn solve_maze_recursively(logger: bool) {
     }
 
     if logger == true {
+        println!(
+            "Maze solution finished in {}s",
+            utils::parse_duration(duration)
+        );
+        println!();
         for row in &solution {
             println!("{row}");
         }

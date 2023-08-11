@@ -14,5 +14,3 @@ Cargo.lock
 *.pdb
 
 src/list/
-src/queue/
-src/stack/
