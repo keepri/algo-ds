@@ -39,3 +39,9 @@
 - dequeue
 - peek
 - len
+
+### Stack
+- push
+- pop
+- peek
+- len
