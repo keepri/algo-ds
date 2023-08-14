@@ -96,7 +96,7 @@ pub fn solve_maze_recursively(logger: bool) {
     let mut solution: Vec<String> = maze.iter().map(|row| row.to_string()).collect();
 
     for i in 0..seen.len() {
-        let seen_row = seen[i].clone();
+        let seen_row = &seen[i];
         for j in 0..seen_row.len() {
             if seen_row[j] == true {
                 let mut solution_row: Vec<char> = solution[i].chars().collect();
@@ -107,7 +107,7 @@ pub fn solve_maze_recursively(logger: bool) {
     }
 
     for point in path {
-        let row = solution[point.x].clone();
+        let row = &solution[point.x];
         let mut chars: Vec<char> = row.chars().collect();
         chars[point.y] = '•';
         solution[point.x] = chars.iter().collect();

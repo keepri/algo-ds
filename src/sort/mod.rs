@@ -27,11 +27,10 @@ pub fn bubble_sort(arr: &mut Vec<isize>, direction: Option<Direction>, logger: b
         }
     }
 
-    let end_time = Instant::now();
     if logger == true {
         println!(
             "bsort finished in {}s - {}",
-            utils::parse_duration(end_time.duration_since(start_time)),
+            utils::parse_duration(Instant::now().duration_since(start_time)),
             match direction {
                 sort::Direction::Asc => "ascending",
                 sort::Direction::Desc => "descending",
@@ -76,12 +75,10 @@ pub fn quick_sort(arr: &mut Vec<isize>, logger: bool) -> () {
 
     qs(arr, 0, len - 1);
 
-    let end_time = Instant::now();
-
     if logger == true {
         println!(
             "qsort finished in {}s",
-            utils::parse_duration(end_time.duration_since(start_time))
+            utils::parse_duration(Instant::now().duration_since(start_time))
         );
     }
 }
@@ -97,12 +94,10 @@ pub fn insertion_sort(arr: &mut Vec<isize>, logger: bool) -> () {
         }
     }
 
-    let end_time = Instant::now();
-
     if logger == true {
         println!(
             "isort finished in {}s",
-            utils::parse_duration(end_time.duration_since(start_time))
+            utils::parse_duration(Instant::now().duration_since(start_time))
         );
     }
 }

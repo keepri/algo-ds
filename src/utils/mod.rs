@@ -7,7 +7,7 @@ use crate::{
     sort::{self, Direction},
     stack::Stack,
 };
-use std::time::Duration;
+use std::{ops::Range, time::Duration};
 
 pub fn parse_duration(duration: Duration) -> f64 {
     return duration.as_secs_f64();
@@ -30,7 +30,7 @@ pub fn run_algo(n: usize, logger: bool) {
     vec.shuffle(&mut rand::thread_rng());
 
     run_sort(&mut vec, logger);
-    run_search(&vec, logger);
+    run_search(&vec, range, logger);
     run_recursive(logger);
 }
 
@@ -42,14 +42,12 @@ fn run_sort(vec: &mut Vec<isize>, logger: bool) {
         println!("-----------------------------------------------------------------------------------------------------");
         println!("{} items", vec.len());
     }
-    sort::bubble_sort(&mut vec.clone(), Some(Direction::Desc), logger);
-    sort::quick_sort(&mut vec.clone(), logger);
+    sort::bubble_sort(vec, Some(Direction::Desc), logger);
+    sort::quick_sort(vec, logger);
     sort::insertion_sort(vec, logger);
 }
 
-fn run_search(vec: &Vec<isize>, logger: bool) {
-    let half_n: isize = vec.len() as isize / 2;
-    let range = -half_n..half_n;
+fn run_search(vec: &Vec<isize>, range: Range<isize>, logger: bool) {
     let to_find = rand::thread_rng().gen_range(range);
 
     if logger == true {
