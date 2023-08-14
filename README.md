@@ -45,3 +45,9 @@
 - pop
 - peek
 - len
+
+### MinHeap
+- insert
+- delete
+- peek
+- size

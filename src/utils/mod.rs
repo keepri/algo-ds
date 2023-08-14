@@ -1,6 +1,7 @@
 use rand::{seq::SliceRandom, Rng};
 
 use crate::{
+    heap::min_heap::MinHeap,
     queue::Queue,
     recursion, search,
     sort::{self, Direction},
@@ -15,6 +16,7 @@ pub fn parse_duration(duration: Duration) -> f64 {
 pub fn run_ds(n: usize, logger: bool) -> () {
     run_queue(n, logger);
     run_stack(n, logger);
+    run_min_heap(n, logger);
 }
 
 pub fn run_algo(n: usize, logger: bool) {
@@ -91,7 +93,7 @@ fn run_queue(n: usize, logger: bool) -> () {
 
     if logger == true {
         println!("initialized");
-        println!("enqueued 1, 2 to queue");
+        println!("enqueued {n} items");
         println!("len is {}", queue.len());
     }
 
@@ -138,7 +140,7 @@ fn run_stack(n: usize, logger: bool) -> () {
 
     if logger == true {
         println!("initialized");
-        println!("pushed {n} items to stack");
+        println!("pushed {n} items");
         println!("len is {}", stack.len());
     }
 
@@ -165,6 +167,56 @@ fn run_stack(n: usize, logger: bool) -> () {
         if logger == true {
             println!("popped {}", value);
             println!("len is {}", stack.len());
+        }
+    }
+}
+
+fn run_min_heap(n: usize, logger: bool) -> () {
+    if logger == true {
+        println!();
+        println!("------------------------------------------ Data Structures ------------------------------------------");
+        println!("|                                             Min Heap                                              |");
+        println!("-----------------------------------------------------------------------------------------------------");
+    }
+
+    let mut min_heap: MinHeap<usize> = MinHeap::new();
+
+    let mut items = vec![];
+    for i in 1..=n {
+        items.push(i);
+    }
+    items.shuffle(&mut rand::thread_rng());
+    for item in items {
+        min_heap.insert(item);
+    }
+
+    if logger == true {
+        println!("initialized");
+        println!("pushed {n} items");
+        println!("len is {}", min_heap.size());
+    }
+
+    let value = min_heap.peek();
+    if logger == true {
+        println!("peeked {}", value);
+    }
+
+    if let Some(value) = min_heap.delete() {
+        if logger == true {
+            println!("popped {}", value);
+            println!("len is {}", min_heap.size());
+        }
+    }
+
+    let value = min_heap.peek();
+    if logger == true {
+        println!("peeked {}", value);
+    }
+
+    if let Some(value) = min_heap.delete() {
+        if logger == true {
+            println!("popped {}", value);
+            println!("len is {}", min_heap.size());
         }
     }
 }

@@ -5,6 +5,7 @@ mod search;
 mod sort;
 mod stack;
 mod utils;
+mod heap;
 
 use std::env::args;
 
