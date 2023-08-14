@@ -193,7 +193,7 @@ fn run_min_heap(n: usize, logger: bool) -> () {
     if logger == true {
         println!("initialized");
         println!("pushed {n} items");
-        println!("len is {}", min_heap.size());
+        println!("len is {}", min_heap.len());
     }
 
     let value = min_heap.peek();
@@ -204,7 +204,7 @@ fn run_min_heap(n: usize, logger: bool) -> () {
     if let Some(value) = min_heap.delete() {
         if logger == true {
             println!("popped {}", value);
-            println!("len is {}", min_heap.size());
+            println!("len is {}", min_heap.len());
         }
     }
 
@@ -216,7 +216,7 @@ fn run_min_heap(n: usize, logger: bool) -> () {
     if let Some(value) = min_heap.delete() {
         if logger == true {
             println!("popped {}", value);
-            println!("len is {}", min_heap.size());
+            println!("len is {}", min_heap.len());
         }
     }
 }
