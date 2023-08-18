@@ -29,7 +29,7 @@ pub fn sort(arr: &mut Vec<isize>, direction: Option<Direction>, logger: bool) ->
 
     if logger == true {
         println!(
-            "bsort finished in {}s - {}",
+            "bubble sort finished in {}s - {}",
             utils::parse_duration(Instant::now().duration_since(start_time)),
             match direction {
                 Direction::Asc => "ascending",

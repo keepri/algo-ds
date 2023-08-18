@@ -88,4 +88,9 @@ impl<T: Default + Debug> Stack<T> {
             return None;
         }
     }
+
+    #[allow(dead_code)]
+    pub fn drop(&mut self) {
+        while self.pop().is_some() {}
+    }
 }

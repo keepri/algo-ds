@@ -88,4 +88,9 @@ impl<T: Default + Debug> Queue<T> {
             return None;
         }
     }
+
+    #[allow(dead_code)]
+    pub fn drop(&mut self) {
+        while self.dequeue().is_some() {}
+    }
 }

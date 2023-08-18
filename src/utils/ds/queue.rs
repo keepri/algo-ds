@@ -15,8 +15,7 @@ pub fn run(n: usize, logger: bool) -> () {
     }
 
     if logger == true {
-        println!("initialized");
-        println!("enqueued {n} items");
+        println!("initialized, enqueued {n} items");
         println!("len is {}", queue.len());
     }
 
@@ -45,4 +44,6 @@ pub fn run(n: usize, logger: bool) -> () {
             println!("len is {}", queue.len());
         }
     }
+
+    queue.drop();
 }

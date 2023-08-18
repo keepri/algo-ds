@@ -37,7 +37,7 @@ pub fn sort(arr: &mut Vec<isize>, logger: bool) -> () {
 
     if logger == true {
         println!(
-            "qsort finished in {}s",
+            "quicky sort finished in {}s",
             utils::parse_duration(Instant::now().duration_since(start_time))
         );
     }

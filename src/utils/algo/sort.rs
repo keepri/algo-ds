@@ -8,7 +8,7 @@ pub fn run(vec: &mut Vec<isize>, logger: bool) {
         println!("-----------------------------------------------------------------------------------------------------");
         println!("{} items", vec.len());
     }
-    bubble::sort(&mut vec.clone(), Some(Direction::Desc), logger);
     quick::sort(&mut vec.clone(), logger);
     insertion::sort(vec, logger);
+    bubble::sort(&mut vec.clone(), Some(Direction::Desc), logger);
 }
