@@ -24,7 +24,6 @@ pub fn run(n: usize, logger: bool) -> () {
     if logger == true {
         println!("initialized");
         println!("pushed {n} items");
-        println!("heap is {:?}", heap);
         println!("len is {}", heap.len());
     }
 

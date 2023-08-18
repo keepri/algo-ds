@@ -13,7 +13,6 @@ fn partition(arr: &mut Vec<isize>, lo: usize, hi: usize) -> usize {
             index += 1;
         }
     }
-
     arr.swap(pivot_idx, index);
 
     return index;
@@ -33,9 +32,8 @@ fn qs(arr: &mut Vec<isize>, lo: usize, hi: usize) -> () {
 
 pub fn sort(arr: &mut Vec<isize>, logger: bool) -> () {
     let start_time = Instant::now();
-    let len = arr.len();
 
-    qs(arr, 0, len - 1);
+    qs(arr, 0, &arr.len() - 1);
 
     if logger == true {
         println!(

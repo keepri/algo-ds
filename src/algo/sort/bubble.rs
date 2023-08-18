@@ -13,12 +13,17 @@ pub fn sort(arr: &mut Vec<isize>, direction: Option<Direction>, logger: bool) ->
     let is_asc = direction == Direction::Asc;
 
     for i in 0..arr.len() {
+        let mut swapped = false;
         for j in 0..arr.len() - 1 - i {
             if (is_asc && arr[j] > arr[j + 1]) || (!is_asc && arr[j] < arr[j + 1]) {
                 bubble = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = bubble;
+                swapped = true;
             }
+        }
+        if !swapped {
+            break;
         }
     }
 
