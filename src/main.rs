@@ -1,10 +1,5 @@
-// mod list;
-mod heap;
-mod queue;
-mod recursion;
-mod search;
-mod sort;
-mod stack;
+mod algo;
+mod ds;
 mod utils;
 
 use std::env::args;
@@ -29,6 +24,6 @@ fn main() {
         };
     }
 
-    utils::run_algo(n, logger);
-    utils::run_ds(n, logger);
+    utils::algo::run(n, logger);
+    utils::ds::run(n, logger);
 }

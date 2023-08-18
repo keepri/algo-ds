@@ -66,7 +66,7 @@ fn walk(
     return false;
 }
 
-fn solve(maze: &Vec<&str>, wall: &str, start: Point, end: Point) -> (Vec<Point>, Vec<Vec<bool>>) {
+fn run(maze: &Vec<&str>, wall: &str, start: Point, end: Point) -> (Vec<Point>, Vec<Vec<bool>>) {
     let mut seen = Vec::<Vec<bool>>::with_capacity(maze.len());
     let mut path: Vec<Point> = vec![];
 
@@ -80,7 +80,7 @@ fn solve(maze: &Vec<&str>, wall: &str, start: Point, end: Point) -> (Vec<Point>,
     return (path, seen);
 }
 
-pub fn solve_maze_recursively(logger: bool) {
+pub fn solve(logger: bool) {
     let maze = vec![
         "####S#####",
         "#  #     #",
@@ -91,7 +91,7 @@ pub fn solve_maze_recursively(logger: bool) {
         "#E########",
     ];
     let start_time = Instant::now();
-    let (path, seen) = solve(&maze, "#", Point { x: 0, y: 4 }, Point { x: 6, y: 1 });
+    let (path, seen) = run(&maze, "#", Point { x: 0, y: 4 }, Point { x: 6, y: 1 });
     let duration = Instant::now().duration_since(start_time);
     let mut solution: Vec<String> = maze.iter().map(|row| row.to_string()).collect();
 

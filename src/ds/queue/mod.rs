@@ -1,5 +1,6 @@
 use std::{
     cell::{Ref, RefCell},
+    default::Default,
     fmt::Debug,
     // sync::{Arc, Mutex},
     rc::Rc,
@@ -21,7 +22,7 @@ pub struct Queue<T> {
     len: usize,
 }
 
-impl<T: std::default::Default + Debug> Queue<T> {
+impl<T: Default + Debug> Queue<T> {
     #[allow(dead_code)]
     pub fn default() -> Self {
         return Queue {

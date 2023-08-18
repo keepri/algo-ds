@@ -1,5 +1,6 @@
 use std::{
     cell::{Ref, RefCell},
+    default::Default,
     fmt::Debug,
     // sync::{Arc, Mutex},
     rc::Rc,
@@ -21,7 +22,7 @@ pub struct Stack<T> {
     len: usize,
 }
 
-impl<T: std::default::Default + Debug> Stack<T> {
+impl<T: Default + Debug> Stack<T> {
     #[allow(dead_code)]
     pub fn default() -> Self {
         return Stack {
