@@ -31,8 +31,7 @@ impl<T: Debug + Default + Ord> MinHeap<T> {
     pub fn delete(&mut self) -> Option<T> {
         let len = self.data.len();
         return match len {
-            0 => None,
-            1 => self.data.pop(),
+            0 | 1 => self.data.pop(),
             _ => {
                 self.data.swap(0, len - 1);
                 let value = self.data.pop();
