@@ -50,7 +50,7 @@ impl<T: Debug + Default + Ord> MinHeap<T> {
 
     #[allow(dead_code)]
     pub fn drop(&mut self) -> () {
-        self.data = Vec::new();
+        self.data.clear();
     }
 
     fn heapify_up(&mut self, index: usize) -> () {
