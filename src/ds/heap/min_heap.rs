@@ -1,33 +1,28 @@
 use std::{default::Default, fmt::Debug};
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Hash)]
 pub struct MinHeap<T> {
     data: Vec<T>,
 }
 
-impl<T: Debug + Default + Ord> MinHeap<T> {
-    #[allow(dead_code)]
+#[allow(dead_code)]
+impl<T> MinHeap<T>
+where
+    T: Debug + Default + Ord,
+{
     pub fn new() -> Self {
-        return Self { data: Vec::new() };
+        return Self::default();
     }
 
-    #[allow(dead_code)]
-    pub fn default() -> Self {
-        return Self { data: Vec::new() };
-    }
-
-    #[allow(dead_code)]
     pub fn len(&self) -> usize {
         return self.data.len();
     }
 
-    #[allow(dead_code)]
     pub fn insert(&mut self, value: T) -> () {
         self.data.push(value);
         self.heapify_up(self.data.len() - 1);
     }
 
-    #[allow(dead_code)]
     pub fn delete(&mut self) -> Option<T> {
         let len = self.data.len();
         return match len {
@@ -42,12 +37,10 @@ impl<T: Debug + Default + Ord> MinHeap<T> {
         };
     }
 
-    #[allow(dead_code)]
     pub fn peek(&mut self) -> &T {
         return &self.data[0];
     }
 
-    #[allow(dead_code)]
     pub fn drop(&mut self) -> () {
         self.data.clear();
     }
@@ -100,5 +93,14 @@ impl<T: Debug + Default + Ord> MinHeap<T> {
 
     fn right_child_idx(&self, index: usize) -> usize {
         return 2 * index + 2;
+    }
+}
+
+impl<T> Default for MinHeap<T>
+where
+    T: Debug + Default + Ord,
+{
+    fn default() -> Self {
+        return Self { data: Vec::new() };
     }
 }

@@ -17,13 +17,16 @@ pub struct SNode<T> {
 
 #[derive(Debug, Clone)]
 pub struct Stack<T> {
-    pub head: Option<Rc<RefCell<SNode<T>>>>,
-    pub tail: Option<Rc<RefCell<SNode<T>>>>,
+    head: Option<Rc<RefCell<SNode<T>>>>,
+    tail: Option<Rc<RefCell<SNode<T>>>>,
     len: usize,
 }
 
-impl<T: Default + Debug> Stack<T> {
-    #[allow(dead_code)]
+#[allow(dead_code)]
+impl<T> Stack<T>
+where
+    T: Default + Debug,
+{
     pub fn default() -> Self {
         return Stack {
             head: None,
@@ -32,7 +35,6 @@ impl<T: Default + Debug> Stack<T> {
         };
     }
 
-    #[allow(dead_code)]
     pub fn new() -> Self {
         return Stack {
             head: None,
@@ -41,12 +43,10 @@ impl<T: Default + Debug> Stack<T> {
         };
     }
 
-    #[allow(dead_code)]
     pub fn len(&self) -> usize {
         return self.len;
     }
 
-    #[allow(dead_code)]
     pub fn push(&mut self, item: T) -> () {
         let node = Rc::new(RefCell::new(SNode {
             value: item,
@@ -63,7 +63,6 @@ impl<T: Default + Debug> Stack<T> {
         self.len += 1;
     }
 
-    #[allow(dead_code)]
     pub fn pop(&mut self) -> Option<T> {
         if let Some(tail) = self.tail.take() {
             let mut tail = tail.borrow_mut();
@@ -80,7 +79,6 @@ impl<T: Default + Debug> Stack<T> {
         };
     }
 
-    #[allow(dead_code)]
     pub fn peek(&self) -> Option<Ref<T>> {
         if let Some(tail) = self.tail.as_ref() {
             return Some(Ref::map(tail.borrow(), |node| &node.value));
@@ -89,7 +87,6 @@ impl<T: Default + Debug> Stack<T> {
         }
     }
 
-    #[allow(dead_code)]
     pub fn drop(&mut self) {
         while self.pop().is_some() {}
     }

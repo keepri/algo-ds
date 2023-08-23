@@ -32,37 +32,32 @@ trait LinkedListTrait<T> {
     fn get(&self, index: usize) -> Option<T>;
 }
 
+#[allow(dead_code, unused_variables)]
 impl<T> LinkedListTrait<T> for MyLinkedList<T> {
     fn len(&self) -> usize {
         return self.len;
     }
 
-    #[allow(unused_variables)]
     fn insert_at(&self, item: T, index: usize) -> () {
         todo!()
     }
 
-    #[allow(unused_variables)]
     fn remove(&self, item: T) -> Option<T> {
         todo!()
     }
 
-    #[allow(unused_variables)]
     fn remove_at(&self, index: usize) -> Option<T> {
         todo!()
     }
 
-    #[allow(unused_variables)]
     fn append(&self, item: T) -> () {
         todo!()
     }
 
-    #[allow(unused_variables)]
     fn prepend(&self, item: T) -> () {
         todo!()
     }
 
-    #[allow(unused_variables)]
     fn get(&self, index: usize) -> Option<T> {
         todo!()
     }
